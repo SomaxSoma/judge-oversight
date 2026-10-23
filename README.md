@@ -40,7 +40,14 @@ Bob alone is the critic: Bob judges Alice directly. The gap between Bob alone an
 
 All channels with CIs and AUROC: [results/channels.md](results/channels.md). Method and caveats: [docs/method.md](docs/method.md).
 
-**Next step:** verdict-free notes from the solve-x4 Bob, with a leak audit ([configs/kaggle_notes_x4_jev.yaml](configs/kaggle_notes_x4_jev.yaml)). The code is ready. The run waits for GPU time.
+## Later phases
+
+- **Notes from the strong Bob (code ready):** verdict-free notes from the solve-x4 Bob, with a leak audit ([configs/kaggle_notes_x4_jev.yaml](configs/kaggle_notes_x4_jev.yaml)). The run waits for GPU time.
+- **More statistical power:** more items, from more Alice samples or more datasets. The CIs now are about ±6 points.
+- **Easier domains:** HealthBench and LEXam, where the judge can answer sub-questions. A reference judge (J2) and a human audit give the gold labels.
+- **More Bob channels:** debate, rubrics and verification questions.
+- **More controls:** an unconstrained Bob that can give a verdict, and an adversarial Bob that tries to mislead the judge.
+- **RL-trained Bob:** the reward is a lower judge error, with a penalty for leaks.
 
 ## Layout
 
