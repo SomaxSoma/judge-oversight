@@ -1,0 +1,46 @@
+# Run 02. Judge llama3.2:3b, Bob qwen3:32b. Notes and testimony.
+# Bob calls come from the cache of the Kaggle run.
+provider:
+  type: ollama
+  base_url: http://127.0.0.1:11434
+  num_ctx: 4096
+  model_options:
+    qwen3:8b:
+      think: false
+    qwen3:32b:
+      think: false
+data:
+  source: gpqa_diamond
+  csv_path: null
+  limit_questions: null
+  seed: 0
+models:
+  alice:
+    model: qwen2.5:7b
+    max_tokens: 2048
+  bob:
+    model: qwen3:32b
+    max_tokens: 1024
+  judge:
+    model: llama3.2:3b
+    max_tokens: 1024
+  leak_checker:
+    model: qwen3:8b
+    max_tokens: 512
+alice:
+  samples_per_question: 3
+  balance: true
+bob:
+  strategy: v1_critique
+  max_regenerations: 1
+  use_llm_leak_check: true
+controls:
+  bob_alone: true
+  testimony: true
+analysis:
+  n_bootstrap: 2000
+  seed: 0
+run:
+  workers: 2
+  cache_dir: cache
+  out_dir: results/02_judge-llama3.2-3b_bob-qwen3-32b

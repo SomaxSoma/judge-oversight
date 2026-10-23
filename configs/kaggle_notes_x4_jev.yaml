@@ -1,0 +1,52 @@
+# Kaggle. Not run yet. Judge gemma3:12b, Bob qwen3:32b.
+# Bob writes verdict-free notes. He sees his own private solve-x4 working.
+# A leak audit measures if the notes reveal his verdict.
+alice:
+  balance: true
+  samples_per_question: 3
+analysis:
+  n_bootstrap: 2000
+  seed: 0
+bob:
+  max_regenerations: 1
+  strategy: v1_critique
+  use_llm_leak_check: true
+controls:
+  bob_alone: true
+  testimony: true
+  j1_bob: true
+  bob_solve_x4: true
+  testimony_x4: true
+  notes_x4: true
+  leak_audit: true
+data:
+  source: gpqa_diamond
+  csv_path: null
+  limit_questions: null
+  seed: 0
+models:
+  alice:
+    max_tokens: 2048
+    model: qwen2.5:7b
+  bob:
+    max_tokens: 1024
+    model: qwen3:32b
+  judge:
+    model: gemma3:12b
+    max_tokens: 1024
+  leak_checker:
+    max_tokens: 512
+    model: qwen3:8b
+provider:
+  base_url: http://127.0.0.1:11434
+  model_options:
+    qwen3:32b:
+      think: false
+    qwen3:8b:
+      think: false
+  num_ctx: 4096
+  type: ollama
+run:
+  cache_dir: cache
+  out_dir: results/08_judge-gemma3-12b_notes-x4
+  workers: 2

@@ -1,0 +1,53 @@
+# Kaggle. Checks with the stronger judge gemma3:12b. Only 180 items were run.
+alice:
+  balance: true
+  samples_per_question: 3
+analysis:
+  n_bootstrap: 2000
+  seed: 0
+bob:
+  max_regenerations: 1
+  strategy: v1_critique
+  use_llm_leak_check: true
+controls:
+  bob_alone: true
+  testimony: true
+  j1_bob: true
+  checks_bob: true
+  checks_self: true
+data:
+  source: gpqa_diamond
+  csv_path: null
+  limit_questions: null
+  seed: 0
+models:
+  alice:
+    max_tokens: 2048
+    model: qwen2.5:7b
+  bob:
+    max_tokens: 1024
+    model: qwen3:32b
+  judge:
+    model: gemma3:12b
+    max_tokens: 1024
+  leak_checker:
+    max_tokens: 512
+    model: qwen3:8b
+  checks_leak_checker:
+    model: llama3.1:8b
+    max_tokens: 1024
+provider:
+  base_url: http://127.0.0.1:11434
+  model_options:
+    qwen3:32b:
+      think: false
+    qwen3:8b:
+      think: false
+  num_ctx: 4096
+  type: ollama
+run:
+  cache_dir: cache
+  out_dir: results/kaggle_checks_jev_gemma3_12b
+  workers: 2
+checks:
+  k: 3

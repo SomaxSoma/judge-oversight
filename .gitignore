@@ -1,0 +1,27 @@
+# GPQA and anything that restates it: never commit
+/data/
+/data_enc/
+/cache/
+*.jsonl
+*.log
+.gpqa_bundle_key
+.env
+
+# Run outputs: commit only summary.json, summary.md and the channel tables
+/results-mock/
+/results/*/*
+!/results/*/summary.json
+!/results/*/summary.md
+!/results/*/report.md
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Autoresearch run logs
+autoresearch/results.tsv
+autoresearch/test_log.tsv
+autoresearch/runs/
+autoresearch/run.log

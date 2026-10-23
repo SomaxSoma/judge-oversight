@@ -1,0 +1,48 @@
+# Autoresearch loop (autoresearch/program.md). Judge llama3.1:8b, Bob qwen3:8b.
+provider:
+  type: ollama
+  base_url: http://127.0.0.1:11434
+  num_ctx: 4096
+  model_options:
+    qwen3:8b:
+      think: false
+data:
+  source: gpqa_diamond
+  csv_path: null
+  limit_questions: null
+  seed: 0
+models:
+  alice:
+    model: qwen2.5:7b
+    max_tokens: 2048
+  bob:
+    model: qwen3:8b
+    max_tokens: 1024
+  judge:
+    model: llama3.1:8b
+    max_tokens: 1024
+  leak_checker:
+    model: qwen3:8b
+    max_tokens: 512
+alice:
+  samples_per_question: 3
+  balance: true
+bob:
+  max_regenerations: 1
+  use_llm_leak_check: true
+autoresearch:
+  split_file: autoresearch/split.json
+  dev_questions: 120
+  max_calls_per_item: 4
+  max_tokens_cap: 4096
+  allowed_extra:
+  - think
+  max_note_words: 200
+  leak_drop_cap: 0.05
+  fail_cap: 0.05
+  p_keep: 0.8
+  n_bootstrap: 2000
+  seed: 0
+run:
+  workers: 2
+  cache_dir: cache
