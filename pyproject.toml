@@ -1,5 +1,5 @@
 [project]
-name = "oversight"
+name = "judge-oversight"
 version = "0.1.0"
 description = "Can a stronger model (Bob) make a weak judge more accurate on GPQA without giving a verdict?"
 authors = [
@@ -31,3 +31,6 @@ kaggle = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.uv.build-backend]
+module-name = "oversight"

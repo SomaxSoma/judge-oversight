@@ -1,4 +1,4 @@
-# Weak-judge oversight on GPQA
+# Judge oversight on GPQA
 
 This project tests one question: can a strong model (Bob) make a weak judge more accurate if Bob must not give a verdict?
 
